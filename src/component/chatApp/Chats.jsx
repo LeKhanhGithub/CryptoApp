@@ -9,6 +9,8 @@ import axios from "axios"
 import Loader from "../Loader"
 import ChatLogo from "../../images/ChatLogo.png";
 import { LoginOutlined } from "@ant-design/icons";
+import { Button, notification } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
 
 export default function Chats() {
   console.log("chay vao ham chats")
@@ -16,6 +18,7 @@ export default function Chats() {
   const {user} = useAuth(); //use context
   const [loading, setLoading] = useState(true);
 
+  const key = 'updatable';
   console.log(user);
 
   async function handleLogout() {
@@ -75,7 +78,8 @@ export default function Chats() {
                 )
                 .then(() => {
                   console.log("tao nguoi dung nay thanh cong")
-                  setLoading(false)
+                  setLoading(false);
+                  
                 })
                 .catch((error) => {
                   console.log("tao nguoi dung that bai: ", error)
@@ -83,12 +87,31 @@ export default function Chats() {
             })
 
       })
+      notification.success({
+        key,
+        message: 'CRYPTO BOT',
+        description: 'Login Success',
+        duration: 3,
+        backgroundColor: 'green',
+        
+      });
+      const timeOut = setTimeout(() => {
+        notification.open({
+          key,
+          message: 'CRYPTO BOT',
+          description: `😘😘 Have a good time ${user.displayName}!!!!!`,
+          duration: 5,
+        });
+      }, 3000);
+
+    return timeOut;
   })
   
   if(!user ||loading ) return <Loader />;
 
   return (
     <div className='chats-page'>
+      
       <div className='nav-bar'>
         <div className='logo-tab'>
           <img src = {ChatLogo} alt ="logo" />

@@ -21,7 +21,7 @@ import {
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
 import LineChart from "./LineChart";
-import { useSelector } from "react-redux";
+import SkeletonCryptoDetails from "./skeleton/SkeletonCryptoDetails";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -32,14 +32,13 @@ const CryptoDetails = () => {
   let { cointId } = useParams();
   const [timePeriod, setTimePeriod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(cointId);
-  const {
-    data: coinHistory, isLoading, isSuccess} = useGetCryptoHistoryQuery({ cointId, timePeriod });
+  const {data: coinHistory, isLoading, isSuccess} = useGetCryptoHistoryQuery({ cointId, timePeriod });
   const cryptoDetails = data?.data?.coin;
   if (isLoading) {
-    return <Loader />;
+    return <SkeletonCryptoDetails />;
   }
   if (isFetching) {
-    return <Loader />;
+    return <SkeletonCryptoDetails />;
   }
 
   const stats = [

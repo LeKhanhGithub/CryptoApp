@@ -5,6 +5,7 @@ import bitcoin from '../images/bitcoin.jpg'
 import Loader from './Loader';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
+import SkeletonNew from './skeleton/SkeletonNew';
 
 const {Text, Title} = Typography;
 const {Option} = Select;
@@ -19,7 +20,7 @@ const News = ({simplified}) => {
   const {data: cryptoNews} = useGetCryptoNewsQuery({newsCategory, count: count});
   const {data} = useGetCryptosQuery(100);
 
-  if(!cryptoNews) return <Loader />;
+  if(!cryptoNews) return <SkeletonNew />;
 
   console.log(cryptoNews);
   return (

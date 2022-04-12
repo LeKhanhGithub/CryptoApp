@@ -7,6 +7,7 @@ import {useGetCryptosQuery} from '../services/cryptoApi';
 import { AnimatePresence, motion } from "framer-motion";
 import Title from 'antd/lib/typography/Title';
 import { CheckOutlined, HeartFilled, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import SkeletonCurrency from './skeleton/SkeletonCurrency';
 
 
 const Cryptocurrencies = ({simplified}) => {
@@ -30,7 +31,7 @@ const Cryptocurrencies = ({simplified}) => {
   }, [cryptosList, searchTerm])
   
   if(isFetching){
-    return <Loader/>;
+    return <SkeletonCurrency />;
   }
   console.log(cryptos);
   const handleOnchange = (event) => {

@@ -6,18 +6,23 @@ import {useGetCryptosQuery} from '../services/cryptoApi';
 import {Cryptocurrencies, News} from '../component';
 import Loader from './Loader';
 import { AnimatePresence, motion } from "framer-motion";
-import { BulbFilled } from '@ant-design/icons';
-import ParticlesBubble from '../component/ParticlesBubble';
+import SkeletonHome from './skeleton/SkeletonHome';
+import CarouselCrypto from './CarouselCrypto';
+
 
 const {Title} = Typography;
 
 const HomePage = () => {
   console.log('truy cap vao homepage');
-  const {data, isFetching} = useGetCryptosQuery(10);
+  const {data, isFetching} = useGetCryptosQuery(20);
   const globalStats = data?.data?.stats;
+  console.log(data);
 
   if(isFetching){
-    return <Loader />;
+    return (
+      <SkeletonHome/>
+    )
+    ;
   }
 
   return (
@@ -36,7 +41,10 @@ const HomePage = () => {
           <Col span = {12}><Statistic title = "Total Markets" value = {millify(globalStats.totalMarkets)} /></Col>
         </Row>
         </motion.div>
-
+        <div>
+        {/* <CarouselCrypto /> */}
+        </div>
+        
         <div className="home-heading-container">
           <Title level = {2} className="home-title" >Top 10 Cryptocurrencies in the world</Title>
           <Title level = {3} className="show-more" ><Link to = {"/cryptocurrencies"} >Show More</Link></Title>

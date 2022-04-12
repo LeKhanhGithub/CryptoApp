@@ -86,9 +86,6 @@ a:hover{
 
 @media screen and (max-width:1300px){
     .main{
-        margin-left: 50px;
-    }
-    .main{
         margin-left: 40px;
     }
     .crypto-card-container{
@@ -147,13 +144,13 @@ a:hover{
         margin-top: 90px;
         margin-left: 0px;
         margin-right: 10px;
+        z-index: -1;
     }
 
     .nav-container{
         height: 8vh;
         position:fixed;
         width: 100%;
-        z-index: 100;
         background-color: var(--bgSecondary);
     }
   
@@ -161,8 +158,9 @@ a:hover{
         display: block !important;
     }
 
-    .ant-menu{
+    .ant-menu-vertical{
         position: absolute;
+        z-index: 3000 !important;
         right: 0px;
     }
     .home-title{
@@ -628,5 +626,3 @@ width: 70%;
     left: calc(50vw - 33px);
     top: calc(50vh - 22px);
   }
-
-  
